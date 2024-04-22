@@ -1,29 +1,22 @@
 import { useEffect } from "react";
-import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import { asyncSet } from "@/store/modules/global/action";
+import { useLanguage } from "@/store/languageStore";
+
 import RouteTable from "./router";
 
-const App = (props: any) => {
+const App = () => {
   const { i18n } = useTranslation();
-  const { lang, asyncSet } = props;
-
+  const { language } = useLanguage();
   useEffect(() => {
-    console.log("lang chang", lang);
-
-    i18n.changeLanguage(lang);
-  }, [lang]);
+    i18n.changeLanguage(language);
+  }, [language]);
 
   return (
     <>
-      {lang}
-      <button onClick={() => asyncSet()}>异步设置语言</button>
       <RouteTable />
     </>
   );
 };
 
-export default connect((state: any) => state.global, {
-  asyncSet,
-})(App);
+export default App;

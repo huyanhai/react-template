@@ -37,7 +37,7 @@ const AuthRouter = (props: { children: JSX.Element }) => {
   }
 
   //   权限
-  const routerList = ["/home", "/403"];
+  const routerList = ["/home", "/403", "/"];
 
   if (!routerList.includes(pathname)) {
     return <Navigate to="/403" />;
